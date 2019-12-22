@@ -1,0 +1,16 @@
+{
+  "suggest.noselect": false,
+  "tsserver.enableJavascript": false,
+  "eslint.enable": true,
+  "eslint.packageManager": "npm",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "javascriptreact",
+    "typescript.tsx",
+    "graphql"
+  ],
+  "prettier.eslintIntegration": true
+}
