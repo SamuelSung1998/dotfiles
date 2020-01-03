@@ -1,21 +1,49 @@
 #!/usr/bin/sh
 
-sxhkd &
+# Export variables
+export NORD0='#2e3440'
+export NORD1='#3b4252'
+export NORD2='#434c5e'
+export NORD3='#4c566a'
+export NORD4='#d8dee9'
+export NORD5='#e5e9f0'
+export NORD6='#eceff4'
+export NORD7='#8fbcbb'
+export NORD8='#88c0d0'
+export NORD9='#81a1c1'
+export NORD10='#5e81ac'
+export NORD11='#bf616a'
+export NORD12='#d08770'
+export NORD13='#ebcb8b'
+export NORD14='#a3be8c'
+export NORD15='#b48ead'
 
-feh --bg-fill $HOME/Wallpaper.*
+sxhkd &
+xcompmgr &
+
+feh --bg-fill $HOME/Wallpaper.* &
 
 $HOME/.config/polybar/launch.sh
 
-bspc monitor DP-0 -d 1 2 3
-bspc monitor HDMI-0 -d 4 5 6 7
-bspc monitor DVI-D-0 -d 8 9 0
+for monitor in $(bspc query -M --names)
+do
+  bspc monitor $monitor -d I II III
+done
+
 
 bspc config border_width         2
 bspc config window_gap           10
+bspc config active_border_color $NORD3
+bspc config focused_border_color $NORD9
+bspc config presel_feedback_color $NORD9
+bspc config normal_border_color $NORD0
 
-bspc config split_ratio          0.52
-bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config split_ratio                  0.5
+
+bspc config borderless_monocle          true
+bspc config gapless_monocle             true
+
+bspc config remove_unplugged_monitors   true
 
 bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Chromium desktop='^2'

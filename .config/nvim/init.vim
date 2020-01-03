@@ -19,12 +19,15 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
   " Themes
-  Plug 'morhetz/gruvbox'
+  " Plug 'morhetz/gruvbox'
+  " Plug 'sainnhe/gruvbox-material'
+  Plug 'arcticicestudio/nord-vim'
   Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
   Plug 'ryanoasis/vim-devicons'
   Plug 'Yggdroot/indentLine'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+  " Plug 'itchyny/lightline.vim'
   Plug 'bling/vim-bufferline'
 
   " NeoVim Nevigation
@@ -141,8 +144,9 @@ map <silent> <expr> <leader>se &hlsearch ? ':set nohlsearch<CR>':':set hlsearch<
 " Tab Nevigation
 nnoremap <silent> th :tabprevious<CR>
 nnoremap <silent> tl :tabnext<CR>
-nnoremap <silent> t- :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> t= :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
+
+" Trigger Completion
+inoremap <silent><expr> <C-Space> coc#refresh()
 
 " Auto make directory if it does not exist
 function s:MkNonExDir(file, buf)
@@ -189,7 +193,7 @@ syntax on
 syntax enable
 
 " Enable spell checking highlight
- let g:gruvbox_guisp_fallback='bg'
+" let g:gruvbox_guisp_fallback='bg'
 
 " Enable 256 colors palette in Gnome Terminal
 if $COLORTERM == 'gnome-terminal'
@@ -201,13 +205,31 @@ endif
 set background=dark
 
 " Set Gruvbox High Contrast Mode
-let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_dark = 'soft'
 
-" Enable gruvbox
-colorscheme gruvbox
+" let g:gruvbox_material_background = 'hard'
 
 " Use Truecolorscheme
 set termguicolors
+
+let g:nord_cursor_line_number_background=1
+
+
+" Enable Color Scheme
+" colorscheme gruvbox
+colorscheme nord
+
+" indentLine colors
+let g:indentLine_color_gui = '#4c566a'
+" let g:indentLine_bgcolor_gui = '#FF5F00'
+
+" Disable Background for Transparency
+"autocmd VimEnter * 
+" highlight NonText ctermbg=NONE guibg=NONE
+highlight Normal ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+highlight SignColumn ctermbg=NONE guibg=NONE
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin Specific
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -255,17 +277,52 @@ set termguicolors
   " Use Powerline Fonts
   let g:airline_powerline_fonts = 1
 
+  " Theme
+  let g:airline_theme = 'nord'
+
   " Extensions
     " Tabline
-  let g:airline#extensions#tabline#enabled = 1
-  let g:airline#extensions#tabline#formatter = 'default'
-  let g:airline#extensions#tabline#buffer_nr_show = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#formatter = 'default'
+    let g:airline#extensions#tabline#buffer_nr_show = 1
 
-  " Ignore
-  let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" lightline
+  " get rid of -- INSERT --
+  " set noshowmode
+
+  " set showtabline=2
+  " set laststatus=2
+  " set guioptions-=e
+
+  " let g:lightline = {
+  "   \ 'colorscheme': 'wombat',
+  "   \ 'separator': {    
+  "   \    'left': '', 'right': '',
+  "   \   },
+  "   \ 'subseparator': {
+  "   \    'left': '', 'right': '',
+  "   \   },
+  "   \ }
+
+" Ignore
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Disable JSON conceal (Qoutes would not be hidden)
 let g:vim_json_syntax_conceal = 0
+
+" CtrlP Auto cache
+function! SetupCtrlP()
+  if exists("g:loaded_ctrlp") && g:loaded_ctrlp
+    augroup CtrlPExtension
+      autocmd!
+      autocmd FocusGained  * CtrlPClearCache
+      autocmd BufWritePost * CtrlPClearCache
+    augroup END
+  endif
+endfunction
+if has("autocmd")
+  autocmd VimEnter * :call SetupCtrlP()
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Language Specific
@@ -400,8 +457,8 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-pairs',
-  "\ 'coc-tsserver',
+  \ 'coc-tsserver',
   \ 'coc-eslint', 
   \ 'coc-prettier', 
-  "\ 'coc-json', 
+  \ 'coc-json', 
   \ ]

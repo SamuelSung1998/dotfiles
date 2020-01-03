@@ -1,0 +1,389 @@
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;; COLORS
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[color]
+
+; Active Shade 
+nord0 = #2E3440
+nord1 = #3B4252
+nord2 = #434C5E
+nord3 = #4C566A
+nord4 = #D8DEE9
+nord5 = #E5E9F0
+nord6 = #ECEFF4
+nord7 = #8FBCBB
+nord8 = #88C0D0
+nord9 = #81A1C1
+nord10 = #5E81AC
+nord11 = #BF616A
+nord12 = #D08770
+nord13 = #EBCB8B
+nord14 = #A3BE8C
+nord15 = #B48EAD
+
+;; Active Colors
+; Nord Theme
+mainbground = ${color.nord3}
+mainfground = ${color.nord5}
+
+mainfocusbground = ${color.nord0}
+mainfocusfground = ${color.nord5}
+
+color1bground = ${color.nord8}
+color1fground = ${color.nord1}
+
+color2bground = ${color.nord9}
+color2fground = ${color.nord1}
+
+;; Other
+trans = #00000000
+white = #FFFFFF
+black = #000000
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;; BAR
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[global/wm]
+
+margin-bottom = 0
+margin-top = 0
+
+[bar/primaryPolybar]
+
+monitor = ${env:MONITOR:}
+monitor-fallback =
+monitor-strict = false
+override-redirect = false
+
+background = ${color.mainbground}
+foreground = ${color.mainfground}
+
+bottom = false
+fixed-center = false
+
+width = 100%
+height = 17
+;offset-x = 0
+;offset-y = 0
+
+radius-top = 0.0
+radius-bottom = 0.0
+
+;overline-size = 2
+;overline-color = ${color.accent}
+
+;border-bottom-size = 2
+;border-color = ${color.borderbg}
+
+padding = 0
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = "FiraCode Nerd Font Mono:size=10:sytle=Medium;2"
+font-1 = "FiraCode Nerd Font Mono:size=16:sytle=Medium;3"
+font-2 = "Noto Sans CJK JP:size=10:sytle=Medium;2"
+
+modules-left = launcher left1 title left2 workspaces
+modules-center = 
+modules-right = right7 pulseaudio right6 battery right5 temp right4 cpu right3 memory right2 network right1 date
+
+separator =
+spacing = 0
+dim-value = 1.0
+wm-name = 
+locale = 
+
+tray-position = right
+tray-detached = false
+tray-maxsize = 24
+;tray-transparent = false
+tray-background = ${color.mainbground}
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 2
+tray-scale = 1.0
+
+enable-ipc = true
+
+[settings]
+
+throttle-output = 5
+throttle-output-for = 10
+throttle-input-for = 30
+
+screenchange-reload = false
+
+compositing-background = source
+compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+compositing-border = over
+
+pseudo-transparency = true
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+;; MODULES
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/left1]
+type = custom/text
+content-background = ${color.color2bground}
+content-foreground = ${color.color1bground}
+content = ""
+
+[module/left2]
+type = custom/text
+content-background = ${color.nord3}
+content-foreground = ${color.color2bground}
+content = " "
+
+#+++++++++++++++++++++++++++++++++++++++
+
+[module/right1]
+type = custom/text
+content-background = ${color.color1bground}
+content-foreground = ${color.color2bground}
+content = ""
+
+[module/right2]
+type = custom/text
+content-background = ${color.color2bground}
+content-foreground = ${color.color1bground}
+content = ""
+
+[module/right3]
+type = custom/text
+content-background = ${color.color1bground}
+content-foreground = ${color.color2bground}
+content = ""
+
+[module/right4]
+type = custom/text
+content-background = ${color.color2bground}
+content-foreground = ${color.color1bground}
+content = ""
+
+[module/right5]
+type = custom/text
+content-background = ${color.color1bground}
+content-foreground = ${color.color2bground}
+content = ""
+
+[module/right6]
+type = custom/text
+content-background = ${color.color2bground}
+content-foreground = ${color.color1bground}
+content = ""
+
+[module/right7]
+type = custom/text
+content-background = ${color.mainbground}
+content-foreground = ${color.color2bground}
+content = ""
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/launcher]
+type = custom/text
+content = "WORK HARD!!! "
+
+content-background = ${color.color1bground}
+content-foreground = ${color.color1fground}
+content-padding = 1
+
+click-left = dmenu_run -b -l 5 -p Search -fn "Misc Termsyn" -nb "#1D1F28" -nf "#f7f7f7" -sb "#1E88E5" -sf "#202020"
+;click-left = rofi -show run -fullscreen True -lines 5 -line-margin 5 -padding 300 -bw 0
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/title]
+type = internal/xwindow
+
+format-padding = 1
+format = <label>
+format-background = ${color.color2bground}
+format-foreground = ${color.color2fground}
+
+
+label = %title:0:20:...%
+;label-maxlen = 20
+
+;label-empty = ""
+;label-empty-foreground = #707880
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/workspaces]
+type = internal/bspwm
+
+format-background = ${color.mainbground}
+format-foreground = ${color.mainfground}
+format-padding = 2
+
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+
+label-focused = " %name% "
+label-focused-background = ${color.mainfocusbground}
+label-focused-foreground = ${color.mainfocusfground}
+
+label-occupied = " %name% "
+
+label-urgent = " %name% "
+
+label-empty = " %name% "
+
+label-separator = " "
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+;sink = alsa_output.pci-0000_01_00.1.hdmi-stereo
+use-ui-max = false
+interval = 5
+
+format-volume = <label-volume>
+format-volume-background = ${color.color2bground}
+format-volume-foreground = ${color.color2fground}
+format-volume-padding = 1.5
+format-muted = <label-muted>
+format-muted-foreground = ${color.color2fground}
+format-muted-background = ${color.color2bground}
+format-muted-padding = 1.5
+
+label-volume = %{T2}ﰝ%{T-} %percentage%
+
+label-muted = ﰝ Muted
+click-right = pavucontrol &
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+
+battery = BAT1
+adapter = ACAD
+
+poll-interval = 2
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-charging-background = ${color.color1bground}
+format-charging-foreground = ${color.color1fground}
+format-charging-padding = 1
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-background = ${color.color1bground}
+format-discharging-foreground = ${color.color1fground}
+format-discharging-padding = 1
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+
+label-full = Fully Charged
+label-full-background = ${color.color1bground}
+label-full-foreground = ${color.color1fground}
+label-full-padding = 1
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+animation-charging-framerate = 750
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/date]
+type = internal/date
+interval = 1.0
+
+time = %{T2}%{T-} %I:%M %p %d/%m
+label = %time%
+
+format = <label>
+format-background = ${color.color2bground}
+format-foreground = ${color.color2fground}
+format-padding = 1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/network]
+type = internal/network
+interface = eno1
+
+interval = 3.0
+accumulate-stats = false
+unknown-as-up = true
+
+format-connected = <label-connected>
+format-connected-background = ${color.color1bground}
+format-connected-foreground = ${color.color1fground}
+format-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.color1bground}
+format-disconnected-foreground = ${color.color1fground}
+format-disconnected-padding = 1
+
+label-connected = %local_ip%
+label-disconnected = _._._._
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/cpu]
+type = internal/cpu
+
+interval = 1
+format = <label>
+format-padding = 1
+format-background = ${color.color1bground}
+format-foreground = ${color.color1fground}
+label = CPU %percentage%%
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/memory]
+type = internal/memory
+
+interval = 1
+format = <label>
+format-padding = 1
+format-background = ${color.color2bground}
+format-foreground = ${color.color2fground}
+label = RAM %gb_used%/%gb_total%
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/temp]
+type = internal/temperature
+
+interval = 1
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+format = <label>
+format-padding = 1
+format-background = ${color.color2bground}
+format-foreground = ${color.color2fground}
+label = TEMP %temperature-c%
