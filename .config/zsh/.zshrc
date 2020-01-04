@@ -1,6 +1,10 @@
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
+# history
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+
 export TERM=xterm-256color
 
 # Load aliases and shortcuts if existent.
@@ -67,7 +71,7 @@ lfcd () {
 
 bindkey -s '^o' 'lfcd\n'  # zsh
 
-export ZSH="/home/samuelsung/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Load zsh-syntax-highlighting; should be last.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
