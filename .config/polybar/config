@@ -64,7 +64,7 @@ bottom = false
 fixed-center = false
 
 width = 100%
-height = 17
+height = ${env:BarHeight:}
 ;offset-x = 0
 ;offset-y = 0
 
@@ -81,9 +81,9 @@ padding = 0
 module-margin-left = 0
 module-margin-right = 0
 
-font-0 = "FiraCode Nerd Font Mono:size=10:sytle=Medium;2"
-font-1 = "FiraCode Nerd Font Mono:size=16:sytle=Medium;3"
-font-2 = "Noto Sans CJK JP:size=10:sytle=Medium;2"
+font-0 = ${env:font0:}
+font-1 = ${env:font1:}
+font-2 = ${env:font2:}
 
 modules-left = launcher left1 title left2 workspaces
 modules-center = 

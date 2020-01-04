@@ -30,6 +30,7 @@ do
     export GDK_SCALE=2
     export GDK_DPI_SCALE=0.5
   fi
+done
 
 # [ ! -f ~/.config/shortcutrc ] && shortcuts >/dev/null 2>&1
 

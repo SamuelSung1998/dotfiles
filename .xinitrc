@@ -13,8 +13,8 @@
 
 # Mandatorily source xinitrc-common, which is common code shared between the
 # Xsession and xinitrc scripts which has been factored out to avoid duplication
-userresources=$HOME/.Xresources
 
+userresources=$HOME/.Xresources
 
 if [ -f "$userresources" ]; then
     xrdb -merge "$userresources"
@@ -39,5 +39,15 @@ fi
     #[ -x /usr/bin/twm ] && /usr/bin/twm
 #fi
 
+# HiDPI computers
+HiDPIComputers=("Blade-Stealth")
+
+for com in "${HiDPIComputers[@]}";
+do
+  if [ "$com" = "$(hostname)" ];
+  then
+    randr --dpi 192
+  fi
+done
 
 exec bspwm
