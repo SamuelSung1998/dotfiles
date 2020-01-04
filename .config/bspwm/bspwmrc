@@ -27,7 +27,7 @@ $HOME/.config/polybar/launch.sh
 
 for monitor in $(bspc query -M --names)
 do
-  bspc monitor $monitor -d term www dev chat play virt
+  bspc monitor $monitor -d TERM WWW DEV CHAT PLAY VIRT
 done
 
 
