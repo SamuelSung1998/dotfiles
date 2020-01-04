@@ -3,9 +3,8 @@
 # Adds `~/.local/bin` to $PATH
 # export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
-# Get default LARBS WM from ~/.local/share/larbs/wm
-# export LARBSWM="$(cat ~/.local/share/larbs/wm 2>/dev/null)" &&
-#   [ "$LARBSWM" = "dwm" ] || export LARBSWM="i3"
+# HiDPI computers
+HiDPIComputers=("Blade-Stealth")
 
 # Default programs:
 export EDITOR="nvim"
@@ -18,31 +17,19 @@ export STATUSBAR="polybar"
 # ~/ Clean-up:
 # export NOTMUCH_CONFIG="$HOME/.config/notmuch-config"
 export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
-export LESSHISTFILE="-"
-export INPUTRC="$HOME/.config/inputrc"
 export ZDOTDIR="$HOME/.config/zsh"
-export PASSWORD_STORE_DIR="$HOME/.local/share/password-store"
-export TMUX_CONFIG_PATH="$HOME/.config/tmux/.tmux.conf"
 
 # Other program settings:
-export DICS="/usr/share/stardict/dic/"
-export SUDO_ASKPASS="$HOME/.local/bin/dmenupass"
 export FZF_DEFAULT_OPTS="--layout=reverse --height 40%"
-export LESS=-R
-export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"
-export LESS_TERMCAP_md="$(printf '%b' '[1;36m')"
-export LESS_TERMCAP_me="$(printf '%b' '[0m')"
-export LESS_TERMCAP_so="$(printf '%b' '[01;44;33m')"
-export LESS_TERMCAP_se="$(printf '%b' '[0m')"
-export LESS_TERMCAP_us="$(printf '%b' '[1;32m')"
-export LESS_TERMCAP_ue="$(printf '%b' '[0m')"
 
-# mpd >/dev/null 2>&1 &
+# High DPI Configurations
+for com in "${HiDPIComputers[@]}";
+do
+  if [ "$com" = "$(hostname)" ];
+  then
+    export GDK_SCALE=2
+    export GDK_DPI_SCALE=0.5
+  fi
 
 # [ ! -f ~/.config/shortcutrc ] && shortcuts >/dev/null 2>&1
 
-# Start graphical server on tty1 if not already running.
-# [ "$(tty)" = "/dev/tty1" ] && ! pgrep -x Xorg >/dev/null && exec startx
-
-# Switch escape and caps if tty and no passwd required:
-# sudo -n loadkeys ~/.local/share/larbs/ttymaps.kmap 2>/dev/null
