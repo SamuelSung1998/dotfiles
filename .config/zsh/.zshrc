@@ -1,5 +1,25 @@
-autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+# Antigen
+[ ! -e $HOME/.antigen/antigen.zsh ] && rm -rf $HOME/.antigen && git clone https://github.com/zsh-users/antigen.git $HOME/.antigen
+
+source $HOME/.antigen/antigen.zsh
+
+antigen use oh-my-zsh
+
+antigen bundle command-not-found
+antigen bundle dnf
+antigen bundle fzf
+antigen bundle git
+antigen bundle pip
+
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen theme agnoster
+
+antigen apply
+
+# Old Status
+# autoload -U colors && colors
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 # history
 SAVEHIST=10000
@@ -70,11 +90,6 @@ lfcd () {
 }
 
 bindkey -s '^o' 'lfcd\n'  # zsh
-
-export ZSH="$HOME/.oh-my-zsh"
-
-# Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 
 # Launch TMUX
 if [[ $DISPLAY ]]; then
