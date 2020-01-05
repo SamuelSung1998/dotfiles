@@ -20,6 +20,17 @@ do
   fi
 done
 
+# Network Interface
+networkInterface1="eno1"
+
+if [ "$(hostname)" = "Blade-Stealth" ]
+then
+  networkInterface1="enp58s0u1u4"
+  networkInterface2="wlp1s0"
+fi
+
+# Temp
+temp=$(for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done | grep Package | cut -d" " -f5)
 
 # Terminate already running bar instances
 killall -q polybar
@@ -38,13 +49,13 @@ then
   for monitor in $pm;
   do
     echo "---" | tee -a /tmp/polybar.log #/tmp/polybar2.log /tmp/polybar3.log
-    BarHeight=$BarHeight MONITOR=$monitor font0=$font0 font1=$font1 font2=$font2 polybar --reload primaryPolybar >>/tmp/polybar.log 2>&1 &
+    temp=$temp networkInterface1=$networkInterface1 networkInterface2=$networkInterface2 BarHeight=$BarHeight MONITOR=$monitor font0=$font0 font1=$font1 font2=$font2 polybar --reload primaryPolybar >>/tmp/polybar.log 2>&1 &
   done
 
   for monitor in $npm;
   do
     echo "---" | tee -a /tmp/polybar.log #/tmp/polybar2.log /tmp/polybar3.log
-    BarHeight=$BarHeight MONITOR=$monitor font0=$font0 font1=$font1 font2=$font2 polybar --reload primaryPolybar >>/tmp/polybar.log 2>&1 &
+    temp=$temp networkInterface1=$networkInterface1 networkInterface2=$networkInterface2 BarHeight=$BarHeight MONITOR=$monitor font0=$font0 font1=$font1 font2=$font2 polybar --reload primaryPolybar >>/tmp/polybar.log 2>&1 &
   done
 else
   echo "Primary monitor is not set"
@@ -52,7 +63,7 @@ else
   for monitor in $npm;
   do
     echo "---" | tee -a /tmp/polybar.log #/tmp/polybar2.log /tmp/polybar3.log
-    BarHeight=$BarHeight MONITOR=$monitor font0=$font0 font1=$font1 font2=$font2 polybar --reload primaryPolybar >>/tmp/polybar.log 2>&1 &
+    temp=$temp networkInterface1=$networkInterface1 networkInterface2=$networkInterface2 BarHeight=$BarHeight MONITOR=$monitor font0=$font0 font1=$font1 font2=$font2 polybar --reload primaryPolybar >>/tmp/polybar.log 2>&1 &
   done
 fi
 

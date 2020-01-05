@@ -87,7 +87,7 @@ font-2 = ${env:font2:}
 
 modules-left = launcher left1 title left2 workspaces
 modules-center = 
-modules-right = right7 pulseaudio right6 battery right5 temp right4 cpu right3 memory right2 network right1 date
+modules-right = right7 pulseaudio right6 battery right5 temp right4 cpu right3 memory right2 network1 right1 network2 right0 date
 
 separator =
 spacing = 0
@@ -137,9 +137,14 @@ content = ""
 type = custom/text
 content-background = ${color.nord3}
 content-foreground = ${color.color2bground}
-content = " "
+content = ""
 
 #+++++++++++++++++++++++++++++++++++++++
+[module/right0]
+type = custom/text
+content-background = ${color.color2bground}
+content-foreground = ${color.color1bground}
+content = ""
 
 [module/right1]
 type = custom/text
@@ -207,7 +212,7 @@ format-background = ${color.color2bground}
 format-foreground = ${color.color2fground}
 
 
-label = %title:0:20:...%
+label = %title:0:15:...%
 ;label-maxlen = 20
 
 ;label-empty = ""
@@ -220,7 +225,7 @@ type = internal/bspwm
 
 format-background = ${color.mainbground}
 format-foreground = ${color.mainfground}
-format-padding = 2
+format-padding = 1
 
 pin-workspaces = true
 enable-click = true
@@ -268,8 +273,8 @@ type = internal/battery
 
 full-at = 99
 
-battery = BAT1
-adapter = ACAD
+battery = BAT0
+adapter = ADP1
 
 poll-interval = 2
 time-format = %H:%M
@@ -284,35 +289,36 @@ format-discharging-background = ${color.color1bground}
 format-discharging-foreground = ${color.color1fground}
 format-discharging-padding = 1
 
-label-charging = %percentage%%
-label-discharging = %percentage%%
+label-charging = %time% %percentage%%
+label-discharging = %time% %percentage%%
 
-label-full = Fully Charged
+label-full =  Fully Charged
 label-full-background = ${color.color1bground}
 label-full-foreground = ${color.color1fground}
 label-full-padding = 1
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
-ramp-capacity-9 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-animation-charging-5 = 
-animation-charging-6 = 
-animation-charging-7 = 
-animation-charging-8 = 
-animation-charging-framerate = 750
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-5 = 
+animation-charging-6 = 
+animation-charging-7 = 
+animation-charging-8 = 
+animation-charging-9 = 
+animation-charging-framerate = 500
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
@@ -324,15 +330,15 @@ time = %{T2}%{T-} %I:%M %p %d/%m
 label = %time%
 
 format = <label>
-format-background = ${color.color2bground}
-format-foreground = ${color.color2fground}
+format-background = ${color.color1bground}
+format-foreground = ${color.color1fground}
 format-padding = 1
 
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
-[module/network]
+[module/network1]
 type = internal/network
-interface = eno1
+interface = ${env:networkInterface1}
 
 interval = 3.0
 accumulate-stats = false
@@ -351,6 +357,28 @@ format-disconnected-padding = 1
 label-connected = %local_ip%
 label-disconnected = _._._._
 
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/network2]
+type = internal/network
+interface = ${env:networkInterface2}
+
+interval = 3.0
+accumulate-stats = false
+unknown-as-up = true
+
+format-connected = <label-connected>
+format-connected-background = ${color.color2bground}
+format-connected-foreground = ${color.color2fground}
+format-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-background = ${color.color2bground}
+format-disconnected-foreground = ${color.color2fground}
+format-disconnected-padding = 1
+
+label-connected = %local_ip%
+label-disconnected = _._._._
 ;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
 
 [module/cpu]
@@ -381,9 +409,9 @@ label = RAM %gb_used%/%gb_total%
 type = internal/temperature
 
 interval = 1
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
+hwmon-path = ${env:temp}
 format = <label>
 format-padding = 1
 format-background = ${color.color2bground}
 format-foreground = ${color.color2fground}
-label = TEMP %temperature-c%
+label =  %temperature-c%
