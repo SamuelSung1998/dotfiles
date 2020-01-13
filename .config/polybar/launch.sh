@@ -14,9 +14,9 @@ do
   if [ "$com" = "$(hostname)" ];
   then
     BarHeight=34
-    font0="FiraCode Nerd Font Mono:size=20:sytle=Medium;4"
-    font1="FiraCode Nerd Font Mono:size=32:sytle=Medium;6"
-    font2="Noto Sans CJK JP:size=20:sytle=Medium;4"
+    font0="FiraCode Nerd Font Mono:size=20:sytle=Bold;4"
+    font1="FiraCode Nerd Font Mono:size=32:sytle=Bold;6"
+    font2="Noto Sans CJK JP:size=20:sytle=Bold;4"
   fi
 done
 

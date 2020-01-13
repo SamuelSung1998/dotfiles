@@ -92,7 +92,8 @@ super + {o,i}
 	bspc wm -h on
 
 # focus or send to the given desktop
-super + {_,shift + }{1-9,0} bspc {desktop -f,node -d} '^{1-9,10}'
+super + {_,shift + }{1-9,0}
+  bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
@@ -133,3 +134,10 @@ super + {Left,Down,Up,Right}
 # focus the next/previous monitor
 super + alt + bracket{left,right}
 	bspc node -d {prev,next}.local -f
+
+
+XF86MonBrightnessUp
+  exec xbacklight -inc 10%
+
+XF86MonBrightnessDown
+  exec xbacklight -dec 10%

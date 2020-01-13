@@ -1,3 +1,6 @@
+# Starship
+# export STARSHIP_CONFIG=~/.config/zsh/starship.toml
+
 # Antigen
 [ ! -e $HOME/.antigen/antigen.zsh ] && rm -rf $HOME/.antigen && git clone https://github.com/zsh-users/antigen.git $HOME/.antigen
 
@@ -12,8 +15,11 @@ antigen bundle git
 antigen bundle pip
 
 antigen bundle zsh-users/zsh-syntax-highlighting
+antigen theme denysdovhan/spaceship-prompt
+antigen bundle MichaelAquilina/zsh-you-should-use
+antigen bundle denysdovhan/spaceship-prompt
 
-antigen theme agnoster
+#antigen theme agnoster
 
 antigen apply
 
@@ -90,6 +96,13 @@ lfcd () {
 }
 
 bindkey -s '^o' 'lfcd\n'  # zsh
+
+# you-should-use config
+export YSU_MESSAGE_FORMAT="$(tput setaf 4)You should: %command ➜  %alias$(tput sgr0)"
+
+# Spaceship config
+export SPACESHIP_PROMPT_ADD_NEWLINE=false
+export SPACESHIP_VI_MODE_SHOW=false
 
 # Launch TMUX
 if [[ $DISPLAY ]]; then

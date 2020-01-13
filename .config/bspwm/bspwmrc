@@ -3,6 +3,8 @@
 # HiDPI computers
 HiDPIComputers=("Blade-Stealth")
 
+source $HOME/.zprofile
+
 # Export variables
 NORD0='#2e3440'
 NORD1='#3b4252'
@@ -30,7 +32,7 @@ $HOME/.config/polybar/launch.sh
 
 for monitor in $(bspc query -M --names)
 do
-  bspc monitor $monitor -d TERM WWW DEV PLAY VIRT OTHERS
+  bspc monitor $monitor -d TERM WWW PROD GAME OTHERS
 done
 
 
@@ -61,8 +63,10 @@ bspc config gapless_monocle             true
 bspc config remove_unplugged_monitors   true
 
 # For Reference, do it later.
-# bspc rule -a Gimp desktop='^8' state=floating follow=on
-# bspc rule -a Chromium desktop='^2'
-# bspc rule -a mplayer2 state=floating
-# bspc rule -a Kupfer.py focus=on
-# bspc rule -a Screenkey manage=off
+bspc rule -a \* desktop=OTHERS.local follow=on
+bspc rule -a $TERMINAL_UP desktop=TERM.local follow=on
+bspc rule -a $BROWSER_UP desktop=WWW.local follow=on
+bspc rule -a $READER_UP desktop=PROD.local state=tiled follow=on 
+bspc rule -a Soffice desktop=PROD.local follow=on
+bspc rule -a minecraft-launcher desktop=GAME.local follow=on
+bspc rule -a Moonlight desktop=GAME.local follow=on

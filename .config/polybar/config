@@ -235,7 +235,7 @@ label-focused = " %name% "
 label-focused-background = ${color.mainfocusbground}
 label-focused-foreground = ${color.mainfocusfground}
 
-label-occupied = " %name% "
+label-occupied = " %name%+"
 
 label-urgent = " %name% "
 

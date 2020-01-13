@@ -33,7 +33,9 @@ call plug#begin('~/.config/nvim/plugged')
   " NeoVim Nevigation
   Plug 'scrooloose/nerdtree'
   Plug 'scrooloose/nerdcommenter'
-  Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'ctrlpvim/ctrlp.vim'
+  Plug '/usr/bin/fzf'
+  Plug 'junegunn/fzf.vim'
 
   " Coding
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -304,8 +306,11 @@ highlight SignColumn ctermbg=NONE guibg=NONE
   "   \   },
   "   \ }
 
-" Ignore
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" Ctrlp Ignore
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+"
+" fzf shortcut
+nmap <C-p> :Files <CR>
 
 " Disable JSON conceal (Qoutes would not be hidden)
 let g:vim_json_syntax_conceal = 0
