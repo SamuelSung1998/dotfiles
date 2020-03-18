@@ -1,0 +1,8 @@
+#!/bin/sh
+
+for w in $(bspc query -W);
+do
+  bpsc window $w -c
+done
+
+bspc quit

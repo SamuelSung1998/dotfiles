@@ -45,6 +45,10 @@ compinit
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
 
+# Edit line in nvim
+autoload edit-command-line; zle -N edit-command-line
+bindkey '^v' edit-command-line
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
@@ -105,8 +109,8 @@ export SPACESHIP_PROMPT_ADD_NEWLINE=false
 export SPACESHIP_VI_MODE_SHOW=false
 
 # Launch TMUX
-if [[ $DISPLAY ]]; then
-    # If not running interactively, do not do anything
-    [[ $- != *i* ]] && return
-    [[ -z "$TMUX" ]] && exec tmux
-fi
+# if [[ $DISPLAY ]]; then
+#     # If not running interactively, do not do anything
+#     [[ $- != *i* ]] && return
+#     [[ -z "$TMUX" ]] && exec tmux
+# fi

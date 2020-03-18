@@ -53,6 +53,16 @@ call plug#begin('~/.config/nvim/plugged')
     " JSON
     Plug 'elzr/vim-json'
 
+    "Markdown"
+    Plug 'godlygeek/tabular'
+    Plug 'plasticboy/vim-markdown'
+
+    "Kotlin"
+    Plug 'udalov/kotlin-vim'
+
+    "PHP"
+    Plug 'StanAngelOff/php.vim'
+
 call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -337,7 +347,8 @@ let javaScript_fold=1
 
 let g:vim_jsx_pretty_colorful_config=1
 
-
+" Enable deoplete at startup
+let g:deoplete#enable_at_startup = 1
 
 
 " You will have bad experience for diagnostic messages when it's default 4000.
@@ -467,3 +478,12 @@ let g:coc_global_extensions = [
   \ 'coc-prettier', 
   \ 'coc-json', 
   \ ]
+
+"Markdown
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_math = 1
+let g:tex_conceal = ""
+let g:vim_markdown_conceal_code_blocks = 0
+
+" PHP
+autocmd FileType php setlocal autoindent

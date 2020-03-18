@@ -26,6 +26,9 @@ NORD15='#b48ead'
 sxhkd &
 xcompmgr &
 
+ibus-daemon -drx
+nextcloud &
+
 feh --bg-fill $HOME/Wallpaper.* --no-fehbg &
 
 $HOME/.config/polybar/launch.sh
@@ -65,8 +68,10 @@ bspc config remove_unplugged_monitors   true
 # For Reference, do it later.
 bspc rule -a \* desktop=OTHERS.local follow=on
 bspc rule -a $TERMINAL_UP desktop=TERM.local follow=on
+bspc rule -a Joplin desktop=TERM.local state=tiled follow=on
 bspc rule -a $BROWSER_UP desktop=WWW.local follow=on
 bspc rule -a $READER_UP desktop=PROD.local state=tiled follow=on 
 bspc rule -a Soffice desktop=PROD.local follow=on
 bspc rule -a minecraft-launcher desktop=GAME.local follow=on
 bspc rule -a Moonlight desktop=GAME.local follow=on
+bspc rule -a moonlight desktop=GAME.local state=tiled follow=on

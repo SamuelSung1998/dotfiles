@@ -2,6 +2,7 @@
 
 # Adds `~/.local/bin`, flatpak to $PATH
 export PATH="$PATH:$(du "$HOME/.local/bin/" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
+export PATH="$PATH:$(du "$HOME/.local/appimage" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 export PATH="$PATH:$(du "/var/lib/flatpak/exports/bin" | cut -f2 | tr '\n' ':' | sed 's/:*$//')"
 
 # HiDPI computers
